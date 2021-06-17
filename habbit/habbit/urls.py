@@ -19,6 +19,7 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView, TokenRefreshView,)
 
 urlpatterns = [
+    path('jet/', include('jet.urls', 'jet')),  # Django JET URLS
     path('admin/', admin.site.urls),
     path('', include('courses.urls', namespace='courses')),
     path('api/', include('courses_api.urls', namespace='courses_api')),
