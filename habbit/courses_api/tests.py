@@ -8,17 +8,17 @@ from rest_framework.test import APIClient
 
 class PostTests(APITestCase):
 
-    def test_view_posts(self):
+    def test_view_product(self):
         """
         Ensure we can view all objects.
         """
-        url = reverse('blog_api:listcreate')
+        url = reverse('product_api:listcreate')
         response = self.client.get(url, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-    def test_create_post(self):
+    def test_create_product(self):
         """
-        Ensure we can create a new Post object and view object.
+        Ensure we can create a new Product object and view object.
         """
         self.test_category = Category.objects.create(name='django')
         self.testuser1 = User.objects.create_superuser(
@@ -34,7 +34,7 @@ class PostTests(APITestCase):
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
-    def test_post_update(self):
+    def test_product_update(self):
 
         client = APIClient()
 
@@ -49,7 +49,7 @@ class PostTests(APITestCase):
         client.login(username=self.testuser1.username,
                      password='123456789')
 
-        url = reverse(('blog_api:detailcreate'), kwargs={'pk': 1})
+        url = reverse(('product_api:detailcreate'), kwargs={'pk': 1})
 
         response = client.put(
             url, {
