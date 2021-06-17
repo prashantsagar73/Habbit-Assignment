@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'users',
     'corsheaders',
     'rest_framework_simplejwt.token_blacklist',
+    'django_rest_passwordreset',
 ]
 
 MIDDLEWARE = [
@@ -168,3 +169,5 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
+# password reset through terminal
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
