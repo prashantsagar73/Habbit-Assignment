@@ -29,5 +29,8 @@ class ProductList(generics.ListCreateAPIView):
 
 # RetrieveDestroyAPIView
 # Used for read or delete endpoints to represent a single model instance.
-class ProductDetail(generics.RetrieveDestroyAPIView):
+class ProductDetail(generics.RetrieveUpdateDestroyAPIView, ProductUserWritePermission):
+    permission_classes = [ProductUserWritePermission]
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
     pass

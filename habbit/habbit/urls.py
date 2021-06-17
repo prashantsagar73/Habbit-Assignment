@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('courses.urls', namespace='courses')),
     path('api/', include('courses_api.urls', namespace='courses_api')),
+    path('api/user/', include('users.urls', namespace='users')),
     # allow user to auth through restframework page
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     # jwt
