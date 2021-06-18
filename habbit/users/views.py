@@ -11,13 +11,13 @@ from django.contrib.auth.models import User
 from .serializers import ChangePasswordSerializer
 from rest_framework.permissions import IsAuthenticated
 
-# custom user from jwt token
+# custom user through jwt token
 
 
 class CustomUserCreate(APIView):
     permission_classes = [AllowAny]
 
-    def post(self, request, format='json'):
+    def product(self, request, format='json'):
         serializer = CustomUserSerializer(data=request.data)
         if serializer.is_valid():
             user = serializer.save()

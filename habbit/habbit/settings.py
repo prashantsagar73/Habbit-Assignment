@@ -138,6 +138,8 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
 }
+# The AllowAny permission class will allow unrestricted access, regardless of if the request was authenticated or unauthenticated.
+# The IsAuthenticated permission class will deny permission to any unauthenticated user, and allow permission otherwise.only be accessible to registered users.
 
 AUTH_USER_MODEL = "users.NewUser"
 

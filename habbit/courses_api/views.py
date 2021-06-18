@@ -12,14 +12,14 @@ from rest_framework import status
 # custom permission
 
 
-# class ProductUserWritePermission(BasePermission):
-#     message = 'Editing is restricared to the author only'
+class ProductUserWritePermission(BasePermission):
+    message = 'Editing is restricared to the author only'
 
-#     def has_object_permission(self, request, view, obj):
-#         if request.method in SAFE_METHODS:
-#             return True
+    def has_object_permission(self, request, view, obj):
+        if request.method in SAFE_METHODS:
+            return True
 
-#         return obj.author == request.user
+        return obj.author == request.user
 
 
 # ListCreateAPIView
@@ -47,7 +47,7 @@ class CreatePost(APIView):
     permission_classes = [permissions.IsAuthenticated]
     paser_classes = [MultiPartParser, FormParser]
 
-    def posts(self, request, format=None):
+    def product(self, request, format=None):
         print(request.data)
         serializer = ProductSerializer(data=request.data)
         if serializer.is_valid():
@@ -68,17 +68,23 @@ class PostListDetailfilter(generics.ListAPIView):
     # '=' Exact matches.
     search_fields = ['^slug']
 
+# get admin access through api
+
 
 class AdminPostDetail(generics.RetrieveAPIView):
     permission_classes = [permissions.IsAuthenticated]
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
+# edit post
+
 
 class EditPost(generics.UpdateAPIView):
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = ProductSerializer
     queryset = Product.objects.all()
+
+# DeletePost
 
 
 class DeletePost(generics.RetrieveDestroyAPIView):
